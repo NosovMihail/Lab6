@@ -1,0 +1,31 @@
+{
+  "collectionPack": {
+    "mumi": [
+      {
+        "name": "Снорк",
+        "myArea": {
+          "passable": "true",
+          "type": "MOUNTAIN"
+        },
+        "gender": "MALE",
+        "position": "STAND",
+        "condition": "NORMAL"
+      },
+      {
+        "name": "Хемуль",
+        "gender": "MALE",
+        "position": "STAND",
+        "condition": "NORMAL"
+      },
+      {
+        "name": "Муми-мама",
+        "myArea": {
+          "passable": "true"
+        },
+        "gender": "FEMALE",
+        "position": "STAND",
+        "condition": "NORMAL"
+      }
+    ]
+  }
+}
