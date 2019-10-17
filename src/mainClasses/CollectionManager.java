@@ -16,7 +16,7 @@ import java.io.*;
 import java.util.*;
 
 public class CollectionManager {
-    private TreeSet<Mumi> mumis;
+    private Vector<Mumi> mumis;
     private Gson parser  = new GsonBuilder()
             .setExclusionStrategies(new ExclusionStrategy() {
         @Override
@@ -35,7 +35,7 @@ public class CollectionManager {
 
     public CollectionManager() {
         initTime = System.currentTimeMillis();
-        mumis = new TreeSet<>();
+        mumis = new Vector<>();
 
         commandsManager = new CommandsManager();
         commandsManager.addCommand(//Добавление необходимых команд
@@ -135,7 +135,7 @@ public class CollectionManager {
         );
     }
 
-    public TreeSet<Mumi> getMumis() {
+    public Vector<Mumi> getMumis() {
         return mumis;
     }
 
@@ -147,7 +147,7 @@ public class CollectionManager {
         this.commandsManager = commandsManager;
     }
 
-    public synchronized void setMumis(TreeSet<Mumi> mumis) {
+    public synchronized void setMumis(Vector<Mumi> mumis) {
         this.mumis = mumis;
         initTime = System.currentTimeMillis();
     }
@@ -156,7 +156,7 @@ public class CollectionManager {
         return parser.fromJson(dataStr, Mumi.class);
     }
 
-    public TreeSet<Mumi> createMumi(String arguments) throws JAXBException {
+    public Vector<Mumi> createMumi(String arguments) throws JAXBException {
 
         return JAXB.unmarshal(new StringReader(arguments.substring(0, arguments.lastIndexOf(">")+1)), CollectionPack.class).getCollection();
     }

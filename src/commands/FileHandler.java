@@ -7,7 +7,6 @@ import mumi.Mumi;
 
 import javax.xml.bind.JAXBException;
 import java.io.*;
-import java.util.TreeSet;
 import java.util.Vector;
 
 public class FileHandler {
@@ -40,7 +39,7 @@ public class FileHandler {
         return vector;
     }*/
 
-    public static TreeSet<Mumi> readFile(String fileName) throws IOException, SecurityException, JAXBException {
+    public static Vector<Mumi> readFile(String fileName) throws IOException, SecurityException, JAXBException {
         Caretaker caretaker = new Caretaker();
         caretaker.setFile(new File(fileName));
         Originator originator = new Originator();
@@ -74,7 +73,7 @@ public class FileHandler {
         }
     }*/
 
-    public static void writeFile(TreeSet<Mumi> mumis) {
+    public static void writeFile(Vector<Mumi> mumis) {
         try{
             Caretaker caretaker = new Caretaker();
             caretaker.setFile(new File("save.xml"));

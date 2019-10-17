@@ -14,8 +14,7 @@ public class Client {
     private SocketChannel socket;
     private Scanner scanner;
     private boolean working;
-    private TreeSet<Mumi> mum;
-    private Set<Mumi> mumis;
+    private Vector<Mumi> mumis;
     private final long WAITING_TIME = 10000;
 
     public Client(String serverAddress, int port) throws IOException {
@@ -26,8 +25,7 @@ public class Client {
         socket = SocketChannel.open(new InetSocketAddress(serverAddress, port));
 
         scanner = new Scanner(System.in);
-        mum = new TreeSet<>();
-        mumis = Collections.synchronizedSet(mum);
+        mumis = new Vector<>();
         doCommand("connect");
     }
 

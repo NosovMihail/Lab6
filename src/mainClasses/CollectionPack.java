@@ -2,7 +2,7 @@ package mainClasses;
 
 import mumi.Mumi;
 
-import java.util.TreeSet;
+import java.util.Vector;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -11,16 +11,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CollectionPack {
 
-    private final TreeSet<Mumi> mumi = new TreeSet<>();
+    private final Vector<Mumi> mumi = new Vector<>();
 
     public CollectionPack(){
     }
 
-    public CollectionPack(TreeSet<Mumi> m){
+    public CollectionPack(Vector<Mumi> m){
         mumi.addAll(m);
     }
 
-    public TreeSet<Mumi> getCollection(){
+    public Vector<Mumi> getCollection(){
         return mumi;
     }
 

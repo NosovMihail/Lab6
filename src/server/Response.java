@@ -4,14 +4,15 @@ import mumi.Mumi;
 
 import java.io.Serializable;
 import java.util.TreeSet;
+import java.util.Vector;
 import java.util.stream.Collectors;
 
 
 public class Response implements Serializable {
     private String doings;
-    private TreeSet<Mumi> mumis;
+    private Vector<Mumi> mumis;
 
-    public Response(String doings, TreeSet<Mumi> mumis){
+    public Response(String doings, Vector<Mumi> mumis){
         this.doings = doings;
         setMumis(mumis);
     }
@@ -24,13 +25,12 @@ public class Response implements Serializable {
         this.doings = doings;
     }
 
-    public TreeSet<Mumi> getMumis() {
+    public Vector<Mumi> getMumis() {
         return mumis;
     }
 
-    public void setMumis(TreeSet<Mumi> mumis) {
+    public void setMumis(Vector<Mumi> mumis) {
         this.mumis = mumis.stream()
-                .sorted()
-                .collect(Collectors.toCollection(TreeSet::new));
+                .collect(Collectors.toCollection(Vector::new));
     }
 }

@@ -10,16 +10,16 @@ import mumi.Mumi;
 import javax.xml.bind.JAXBException;
 import java.io.*;
 import java.net.Socket;
-import java.util.TreeSet;
+import java.util.Vector;
 
 public class ClientThread extends Thread {
     private static CommandsManager manager;
     private final CollectionManager collectionManager;
-    private TreeSet<Mumi> mumis;
+    private Vector<Mumi> mumis;
     private Socket socket;
     private boolean isActive;
 
-    public ClientThread(Socket socket, TreeSet<Mumi> mumis) {
+    public ClientThread(Socket socket, Vector<Mumi> mumis) {
         collectionManager = new CollectionManager();
         collectionManager.setMumis(mumis);
 
