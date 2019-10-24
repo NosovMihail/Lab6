@@ -10,16 +10,16 @@ import mumi.Mumi;
 import javax.xml.bind.JAXBException;
 import java.io.*;
 import java.net.Socket;
-import java.util.Vector;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class ClientThread extends Thread {
     private static CommandsManager manager;
     private final CollectionManager collectionManager;
-    private Vector<Mumi> mumis;
+    private ConcurrentSkipListSet<Mumi> mumis;
     private Socket socket;
     private boolean isActive;
 
-    public ClientThread(Socket socket, Vector<Mumi> mumis) {
+    public ClientThread(Socket socket, ConcurrentSkipListSet<Mumi> mumis) {
         collectionManager = new CollectionManager();
         collectionManager.setMumis(mumis);
 

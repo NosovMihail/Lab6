@@ -7,12 +7,12 @@ import mumi.Mumi;
 
 import javax.xml.bind.JAXBException;
 import java.io.*;
-import java.util.Vector;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class FileHandler {
 
-/*    public static Vector<Mumi> readFile(String fileName) {
-        Vector<Mumi> vector = new Vector<>();
+/*    public static ConcurrentSkipListSet<Mumi> readFile(String fileName) {
+        ConcurrentSkipListSet<Mumi> ConcurrentSkipListSet = new ConcurrentSkipListSet<>();
 
         char[] fileContent = {};
 
@@ -34,12 +34,12 @@ public class FileHandler {
             e.printStackTrace();
         }
 
-        dataJSON.forEach(obj -> vector.add(new Mumi((JSONObject) obj)));
+        dataJSON.forEach(obj -> ConcurrentSkipListSet.add(new Mumi((JSONObject) obj)));
 
-        return vector;
+        return ConcurrentSkipListSet;
     }*/
 
-    public static Vector<Mumi> readFile(String fileName) throws IOException, SecurityException, JAXBException {
+    public static ConcurrentSkipListSet<Mumi> readFile(String fileName) throws IOException, SecurityException, JAXBException {
         Caretaker caretaker = new Caretaker();
         caretaker.setFile(new File(fileName));
         Originator originator = new Originator();
@@ -54,7 +54,7 @@ public class FileHandler {
         return originator.getState().getCollection();
     }
 
-/*    public static void writeFile(Vector<Mumi> Mumis) {
+/*    public static void writeFile(ConcurrentSkipListSet<Mumi> Mumis) {
         JSONArray JSONdata = new JSONArray();
         for (Mumi Mumi : Mumis) {
             try {
@@ -73,7 +73,7 @@ public class FileHandler {
         }
     }*/
 
-    public static void writeFile(Vector<Mumi> mumis) {
+    public static void writeFile(ConcurrentSkipListSet<Mumi> mumis) {
         try{
             Caretaker caretaker = new Caretaker();
             caretaker.setFile(new File("save.xml"));

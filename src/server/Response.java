@@ -3,16 +3,15 @@ package server;
 import mumi.Mumi;
 
 import java.io.Serializable;
-import java.util.TreeSet;
-import java.util.Vector;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.stream.Collectors;
 
 
 public class Response implements Serializable {
     private String doings;
-    private Vector<Mumi> mumis;
+    private ConcurrentSkipListSet<Mumi> mumis;
 
-    public Response(String doings, Vector<Mumi> mumis){
+    public Response(String doings, ConcurrentSkipListSet<Mumi> mumis){
         this.doings = doings;
         setMumis(mumis);
     }
@@ -25,12 +24,12 @@ public class Response implements Serializable {
         this.doings = doings;
     }
 
-    public Vector<Mumi> getMumis() {
+    public ConcurrentSkipListSet<Mumi> getMumis() {
         return mumis;
     }
 
-    public void setMumis(Vector<Mumi> mumis) {
+    public void setMumis(ConcurrentSkipListSet<Mumi> mumis) {
         this.mumis = mumis.stream()
-                .collect(Collectors.toCollection(Vector::new));
+                .collect(Collectors.toCollection(ConcurrentSkipListSet::new));
     }
 }

@@ -10,10 +10,10 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Scanner;
-import java.util.Vector;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class Server {
-    private Vector<Mumi> mumis;
+    private ConcurrentSkipListSet<Mumi> mumis;
     private ServerSocket serverSocket;
     public Server(int port) throws IOException {
         serverSocket = new ServerSocket(port, 0, InetAddress.getLocalHost());

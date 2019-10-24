@@ -14,9 +14,10 @@ import javax.xml.bind.JAXB;
 import javax.xml.bind.JAXBException;
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 public class CollectionManager {
-    private Vector<Mumi> mumis;
+    private ConcurrentSkipListSet<Mumi> mumis;
     private Gson parser  = new GsonBuilder()
             .setExclusionStrategies(new ExclusionStrategy() {
         @Override
@@ -35,7 +36,7 @@ public class CollectionManager {
 
     public CollectionManager() {
         initTime = System.currentTimeMillis();
-        mumis = new Vector<>();
+        mumis = new ConcurrentSkipListSet<>();
 
         commandsManager = new CommandsManager();
         commandsManager.addCommand(//Добавление необходимых команд
@@ -81,7 +82,7 @@ public class CollectionManager {
                     }
                     @Override
                     public void describe() {
-                        commandsManager.println("Displays the contents of the vector.");
+                        commandsManager.println("Displays the contents of the ConcurrentSkipListSet.");
                     }
                 },
                 new Command("save", 0) {
@@ -91,7 +92,7 @@ public class CollectionManager {
                     }
                     @Override
                     public void describe() {
-                        commandsManager.println("Сохраняет коллекцию в файл save.json.");
+                        commandsManager.println("Сохраняет коллекцию в файл save.xml.");
                     }
                 },
                 new Command("clear", 0) {
@@ -135,7 +136,7 @@ public class CollectionManager {
         );
     }
 
-    public Vector<Mumi> getMumis() {
+    public ConcurrentSkipListSet<Mumi> getMumis() {
         return mumis;
     }
 
@@ -147,7 +148,7 @@ public class CollectionManager {
         this.commandsManager = commandsManager;
     }
 
-    public synchronized void setMumis(Vector<Mumi> mumis) {
+    public synchronized void setMumis(ConcurrentSkipListSet<Mumi> mumis) {
         this.mumis = mumis;
         initTime = System.currentTimeMillis();
     }
@@ -156,14 +157,14 @@ public class CollectionManager {
         return parser.fromJson(dataStr, Mumi.class);
     }
 
-    public Vector<Mumi> createMumi(String arguments) throws JAXBException {
+    public ConcurrentSkipListSet<Mumi> createMumi(String arguments) throws JAXBException {
 
         return JAXB.unmarshal(new StringReader(arguments.substring(0, arguments.lastIndexOf(">")+1)), CollectionPack.class).getCollection();
     }
 
-/*   public synchronized Vector<Mumi> createMumi(String arguments) {
+/*   public synchronized ConcurrentSkipListSet<Mumi> createMumi(String arguments) {
         System.err.println(arguments);
-        Vector<Mumi> vector = new Vector<>();
+        ConcurrentSkipListSet<Mumi> ConcurrentSkipListSet = new ConcurrentSkipListSet<>();
         JSONArray dataJSON = null;
         try {
             System.err.println(arguments);
@@ -174,8 +175,8 @@ public class CollectionManager {
         }
 
         commandsManager.println("Data converting from JSON started.");
-        dataJSON.forEach(obj -> vector.add(new Mumi((JSONObject) obj)));
+        dataJSON.forEach(obj -> ConcurrentSkipListSet.add(new Mumi((JSONObject) obj)));
         commandsManager.println("Data converting finished");
-        return vector;
+        return ConcurrentSkipListSet;
     }*/
 }
